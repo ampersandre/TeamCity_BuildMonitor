@@ -11,7 +11,7 @@ namespace BuildMonitor.Models.Home
 		public string LastRunText { get; set; }
 		public bool IsQueued { get; set; }
 		public string StatusDescription { get; set; }
-
+		public bool FailedToStart { get; set; }
 
 		public string StatusText
 		{
@@ -30,6 +30,9 @@ namespace BuildMonitor.Models.Home
 
 					case BuildStatus.Error:
 						return "ERROR";
+                    
+                    case BuildStatus.FailedToStart:
+				        return "FAILED TO START";
 
 					default:
 						return "UNKNOWN";

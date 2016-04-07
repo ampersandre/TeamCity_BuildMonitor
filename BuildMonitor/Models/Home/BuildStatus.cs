@@ -7,5 +7,6 @@
 		Failure,
 		Error,
 		Running,
+		FailedToStart
 	}
 }
