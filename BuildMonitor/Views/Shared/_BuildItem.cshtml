@@ -16,6 +16,12 @@
 				<span> ▪ </span><span class="buildInfoProgressHighlight">queued</span>
 			}
 		</p>
-		<p class="buildInfo text-cutoff">Last updated by <span class="buildInfoHighlight">@Model.UpdatedBy</span> @Model.LastRunText</p>
+		<p class="buildInfo text-cutoff">
+			Last updated
+			@if (!string.IsNullOrWhiteSpace(Model.UpdatedBy)) {
+				<span> by <span class="buildInfoHighlight"> @Model.UpdatedBy </span></span>
+			}
+			@Model.LastRunText
+		</p>
 	</div>
 </div>

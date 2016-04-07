@@ -107,18 +107,28 @@ namespace BuildMonitor.Helpers
 			try
 			{
 				var triggerType = (string)buildStatusJson.triggered.type;
-                if (triggerType == "user")
-				{
-					return (string)buildStatusJson.triggered.user.name;
-				}
-
-				if (triggerType == "vcs" && buildStatusJson.lastChanges != null)
+                
+				if (buildStatusJson.lastChanges != null)
 				{
 					var result = RequestHelper.GetJson(teamCityUrl + buildStatusJson.lastChanges.change[0].href);
 					var change = JsonConvert.DeserializeObject<dynamic>(result);
 
-					return (string)change.user.name;
+					if (change.username != null)
+					{
+						return (string)change.username;
+					}
+					if (change.user != null)
+					{
+				        return (string)change.user.name;
+				    }
+					return "Unknown";
 				}
+
+				if (triggerType == "user")
+				{
+					return (string)buildStatusJson.triggered.user.name;
+				}
+
 
 				if (triggerType == "unknown")
 				{
