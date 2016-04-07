@@ -59,12 +59,17 @@ namespace BuildMonitor.Helpers
 				build.LastRunText = GetLastRunText();
 				build.IsQueued = IsBuildQueued(build.Id);
 				build.StatusDescription = (string)buildStatusJson.statusText;
+				build.FailedToStart = buildStatusJson.failedToStart ?? false;
 
 				if (build.Status == BuildStatus.Running)
 				{
 					var result = GetRunningBuildBranchAndProgress(build.Id);
 					build.Branch = result[0];
 					build.Progress = result[1];
+				}
+				else if (build.FailedToStart)
+				{
+					build.Status = BuildStatus.FailedToStart;
 				}
 				else
 				{

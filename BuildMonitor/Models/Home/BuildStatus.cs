@@ -6,6 +6,6 @@
 		Success,
 		Failure,
 		Error,
-		Running
+		Running,
 	}
 }

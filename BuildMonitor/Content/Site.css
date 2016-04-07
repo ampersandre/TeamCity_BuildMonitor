@@ -126,6 +126,15 @@ html * {
 	margin-bottom: -5px;
 }
 
+.status-FailedToStart {
+	font-family: kenzo;
+	font-size: 63px;
+    line-height: 82px;
+	color: #F8730B;
+	margin-top: -20px;
+	margin-bottom: -5px;
+}
+
 .status-Error {
 	font-family: kenzo;
 	font-size: 75px;
